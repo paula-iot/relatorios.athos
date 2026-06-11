@@ -1,1 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orçamento — Regularização de Infraestrutura | Athos Psicologia | Kairos Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --c-bg:        #F7F4EF;
+      --c-surface:   #FFFFFF;
+      --c-ink:       #1A1714;
+      --c-ink-2:     #4A4540;
+      --c-ink-3:     #8C857D;
+      --c-accent:    #B8977A;
+      --c-accent-dk: #8C6E56;
+      --c-line:      #E4DDD6;
+      --c-tag-bg:    #EDE8E2;
+      --c-ok:        #3A7A3A;
+      --c-ok-bg:     #EAF5EA;
+      --font: 'Inter', sans-serif;
+      --r-md: 10px;
+      --r-lg: 20px;
+      --max-w: 820px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--c-bg); color: var(--c-ink); font-size: 15px; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+    .wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
 
+    /* COVER */
+    .cover { background: var(--c-ink); color: #F7F4EF; padding: 72px 0 64px; position: relative; overflow: hidden; }
+    .cover::before { content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 110% 50%, rgba(184,151,122,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at -10% 80%, rgba(184,151,122,.10) 0%, transparent 60%);
+    }
+    .cover__inner { position: relative; }
+    .cover__eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+    .cover__brand { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--c-accent); }
+    .cover__sep { width: 32px; height: 1px; background: rgba(184,151,122,.4); }
+    .cover__doc { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: rgba(247,244,239,.4); }
+    .cover__title { font-size: clamp(28px, 4.5vw, 44px); font-weight: 800; line-height: 1.12; letter-spacing: -.02em; margin-bottom: 16px; }
+    .cover__title em { font-style: normal; color: var(--c-accent); }
+    .cover__sub { font-size: 15px; font-weight: 300; color: rgba(247,244,239,.6); max-width: 540px; line-height: 1.65; margin-bottom: 44px; }
+    .cover__meta { display: flex; gap: 36px; flex-wrap: wrap; }
+    .cover__meta-label { font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(247,244,239,.35); margin-bottom: 4px; }
+    .cover__meta-value { font-size: 14px; font-weight: 500; color: rgba(247,244,239,.85); }
+
+    /* SECTIONS */
+    .section { padding: 56px 0; border-bottom: 1px solid var(--c-line); }
+    .section:last-of-type { border-bottom: none; }
+    .section__label { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--c-accent); margin-bottom: 10px; }
+    .section__title { font-size: 22px; font-weight: 700; letter-spacing: -.02em; line-height: 1.2; margin-bottom: 20px; }
+    .lead { font-size: 14px; color: var(--c-ink-2); margin-bottom: 18px; }
+
+    /* CONTEXT BOX */
+    .context-box { background: var(--c-surface); border: 1px solid var(--c-line); border-left: 4px solid var(--c-accent);
+      border-radius: var(--r-md); padding: 20px 24px; margin-top: 8px; font-size: 14px; color: var(--c-ink-2); line-height: 1.7; }
+    .context-box strong { color: var(--c-ink); }
+
+    /* SCOPE STEPS */
+    .step { display: flex; gap: 16px; align-items: flex-start; background: var(--c-surface);
+      border: 1px solid var(--c-line); border-radius: var(--r-md); padding: 20px 22px; margin-bottom: 12px; }
+    .step__num { width: 30px; height: 30px; border-radius: 50%; background: var(--c-accent); color: #fff;
+      display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex-shrink: 0; margin-top: 2px; }
+    .step__title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .step__what { font-size: 13px; color: var(--c-ink-2); line-height: 1.65; margin-bottom: 6px; }
+    .step__why { font-size: 12.5px; color: var(--c-ink-3); line-height: 1.6; }
+    .step__why strong { color: var(--c-accent-dk); font-weight: 700; }
+
+    /* INCLUDED / NOT INCLUDED */
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+    .compare__card { background: var(--c-surface); border: 1px solid var(--c-line); border-radius: var(--r-md); padding: 20px 24px; }
+    .compare__card--in { border-top: 3px solid var(--c-ok); }
+    .compare__card--out { border-top: 3px solid var(--c-ink-3); }
+    .compare__title { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 12px; }
+    .compare__card--in .compare__title { color: var(--c-ok); }
+    .compare__card--out .compare__title { color: var(--c-ink-3); }
+    .compare__list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .compare__list li { display: flex; gap: 8px; font-size: 13px; color: var(--c-ink-2); line-height: 1.6; }
+    .compare__list li::before { content: '•'; color: var(--c-accent); font-weight: 800; }
+
+    /* PAYMENT BOX */
+    .payment-box { background: var(--c-ink); border-radius: var(--r-lg); padding: 40px 48px;
+      display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; margin-top: 24px; }
+    .payment-box__label { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--c-accent); margin-bottom: 8px; }
+    .payment-box__title { font-size: 18px; font-weight: 700; color: #F7F4EF; margin-bottom: 8px; }
+    .payment-box__desc { font-size: 13px; color: rgba(247,244,239,.5); line-height: 1.7; max-width: 360px; }
+    .payment-box__price { font-size: 52px; font-weight: 800; letter-spacing: -.03em; color: #F7F4EF; line-height: 1; text-align: right; }
+    .payment-box__note { font-size: 12px; color: rgba(247,244,239,.35); text-align: right; margin-top: 6px; }
+
+    /* ITEM LIST */
+    .item-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+    .item-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--c-ink-2); line-height: 1.65; }
+    .item-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--c-accent); flex-shrink: 0; margin-top: 8px; }
+    .item-list li strong { color: var(--c-ink); font-weight: 600; }
+
+    /* TIMELINE PRAZO */
+    .prazo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 8px; }
+    .prazo__card { background: var(--c-surface); border: 1px solid var(--c-line); border-radius: var(--r-md); padding: 18px 20px; }
+    .prazo__phase { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--c-accent); margin-bottom: 6px; }
+    .prazo__time { font-size: 17px; font-weight: 800; margin-bottom: 4px; }
+    .prazo__desc { font-size: 12.5px; color: var(--c-ink-2); line-height: 1.6; }
+
+    /* ALERT */
+    .alert-box { background: var(--c-surface); border: 1px solid var(--c-line); border-left: 4px solid var(--c-accent);
+      border-radius: var(--r-md); padding: 20px 24px; margin-top: 16px; }
+    .alert-box__title { font-size: 13px; font-weight: 700; color: var(--c-accent-dk); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .06em; }
+    .alert-box__body { font-size: 13px; color: var(--c-ink-2); line-height: 1.7; }
+
+    /* CHOICE */
+    .choice { background: var(--c-ok-bg); border: 1px solid #CDE5CD; border-left: 4px solid var(--c-ok);
+      border-radius: var(--r-md); padding: 20px 24px; margin-top: 16px; font-size: 14px; color: #2C5A2C; line-height: 1.7; }
+    .choice strong { color: #1F421F; }
+
+    /* FOOTER */
+    .footer { padding: 32px 0; border-top: 1px solid var(--c-line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer__brand { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--c-ink-3); }
+    .footer__copy { font-size: 12px; color: var(--c-ink-3); }
+
+    @media print {
+      body { background: #fff; font-size: 13px; }
+      .cover, .payment-box, .step__num { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section { page-break-inside: avoid; }
+    }
+    @media (max-width: 640px) {
+      .wrap { padding: 0 22px; }
+      .compare { grid-template-columns: 1fr; }
+      .prazo { grid-template-columns: 1fr; }
+      .payment-box { grid-template-columns: 1fr; padding: 32px 28px; }
+      .payment-box__price, .payment-box__note { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="wrap">
+    <div class="cover__inner">
+      <div class="cover__eyebrow">
+        <span class="cover__brand">Kairos Solutions IT LTDA</span>
+        <span class="cover__sep"></span>
+        <span class="cover__doc">Orçamento de Serviço</span>
+      </div>
+      <h1 class="cover__title">Regularização de infraestrutura<br>dos sites da <em>Athos Psicologia</em></h1>
+      <p class="cover__sub">
+        Orçamento detalhado da etapa técnica que falta para os dois sites voltarem ao ar:
+        o que será feito, por que cada passo é necessário, prazo e condições — explicado de
+        forma simples, para você decidir com total clareza.
+      </p>
+      <div class="cover__meta">
+        <div><p class="cover__meta-label">Cliente</p><p class="cover__meta-value">Anisha — Athos Psicologia</p></div>
+        <div><p class="cover__meta-label">Responsável</p><p class="cover__meta-value">Paula Silva — Kairos Solutions IT LTDA</p></div>
+        <div><p class="cover__meta-label">Data</p><p class="cover__meta-value">10 / Junho / 2026</p></div>
+        <div><p class="cover__meta-label">Valor</p><p class="cover__meta-value">R$ 500,00 — único</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXTO -->
+<section class="section">
+  <div class="wrap">
+    <p class="section__label">Contexto</p>
+    <h2 class="section__title">Por que este orçamento existe</h2>
+    <div class="context-box">
+      Como detalhado no <strong>Relatório de Situação</strong> que acompanha este documento, os dois sites estão
+      fora do ar por questões de <strong>infraestrutura</strong> — endereço (domínio), hospedagem e os apontamentos
+      entre eles. Esse tipo de serviço é de natureza diferente do SEO e da unificação contratados, e por isso
+      é orçado separadamente, <strong>antes de qualquer execução</strong>, para sua aprovação.
+      <br><br>
+      Importante: <strong>tudo o que já foi feito até aqui não será cobrado</strong> — este valor refere-se
+      exclusivamente ao trabalho descrito abaixo, daqui para frente.
+    </div>
+  </div>
+</section>
+
+<!-- ESCOPO -->
+<section class="section">
+  <div class="wrap">
+    <p class="section__label">Escopo do serviço</p>
+    <h2 class="section__title">O que será feito, passo a passo</h2>
+
+    <div class="step">
+      <div class="step__num">1</div>
+      <div>
+        <p class="step__title">Destravar o endereço .com (Webnode)</p>
+        <p class="step__what">Conclusão da transferência do domínio athospsicologia.com da Webnode para a Hostinger, usando o código de mudança (EPP) já emitido — incluindo o acompanhamento junto aos suportes das duas plataformas até a conclusão.</p>
+        <p class="step__why"><strong>Por quê:</strong> hoje o endereço está "preso" na Webnode com uma pendência que impede o site de ser encontrado. Transferindo para a Hostinger, tudo fica em um só lugar, sob seu controle, sem depender mais da Webnode.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__num">2</div>
+      <div>
+        <p class="step__title">Restaurar o site na Hostinger</p>
+        <p class="step__what">Subida da cópia de segurança completa (~671 MB) para a hospedagem, pelo método manual (FTP), contornando o limite de 300 MB do WordPress. Inclui a reinstalação limpa do ambiente e a substituição do plugin de SEO de origem não oficial por uma versão segura.</p>
+        <p class="step__why"><strong>Por quê:</strong> é o que coloca o site de pé de novo — com todas as páginas, textos e fotos exatamente como eram, e sem o plugin que causava erros.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__num">3</div>
+      <div>
+        <p class="step__title">Configurar as "placas" (DNS) dos dois endereços</p>
+        <p class="step__what">Apontamento definitivo do .com e conferência do .com.br (já configurado) para a Hostinger, com o redirecionamento correto entre os dois endereços.</p>
+        <p class="step__why"><strong>Por quê:</strong> é o que faz a pessoa que digita qualquer um dos seus endereços chegar de fato no seu site.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__num">4</div>
+      <div>
+        <p class="step__title">Ativar o "cadeado" de segurança (SSL)</p>
+        <p class="step__what">Emissão e validação do certificado de segurança para os dois endereços.</p>
+        <p class="step__why"><strong>Por quê:</strong> sem o cadeado, o navegador exibe um aviso de "site não seguro" — o que afasta pacientes e prejudica o Google.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__num">5</div>
+      <div>
+        <p class="step__title">Testar tudo e entregar funcionando</p>
+        <p class="step__what">Verificação completa: propagação dos endereços, todas as páginas, formulários de contato e redirecionamentos. Entrega com um resumo do que foi feito.</p>
+        <p class="step__why"><strong>Por quê:</strong> garantia de que você recebe o site 100% no ar, testado, e não "teoricamente pronto".</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCLUSO / NÃO INCLUSO -->
+<section class="section">
+  <div class="wrap">
+    <p class="section__label">Transparência</p>
+    <h2 class="section__title">O que está incluso — e o que não está</h2>
+    <div class="compare">
+      <div class="compare__card compare__card--in">
+        <p class="compare__title">✓ Incluso neste orçamento</p>
+        <ul class="compare__list">
+          <li>Transferência do domínio .com para a Hostinger — mão de obra, acompanhamento <strong>e a taxa de transferência/renovação cobrada pelo registrador</strong> (sem custo adicional para você)</li>
+          <li>Restauração completa do site a partir do backup</li>
+          <li>Substituição do plugin de SEO irregular por versão segura</li>
+          <li>Configuração de DNS dos dois endereços</li>
+          <li>Certificado de segurança (SSL)</li>
+          <li>Testes completos e entrega documentada</li>
+        </ul>
+      </div>
+      <div class="compare__card compare__card--out">
+        <p class="compare__title">Não incluso</p>
+        <ul class="compare__list">
+          <li>Mensalidade/anuidade da hospedagem Hostinger (plano já existente na sua conta, pago diretamente à plataforma)</li>
+          <li>Serviços de SEO e unificação — já garantidos pelo contrato vigente, sem custo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRAZO -->
+<section class="section">
+  <div class="wrap">
+    <p class="section__label">Prazo</p>
+    <h2 class="section__title">Quanto tempo leva</h2>
+    <div class="prazo">
+      <div class="prazo__card">
+        <p class="prazo__phase">Fase 1 — Transferência</p>
+        <p class="prazo__time">5 a 7 dias úteis</p>
+        <p class="prazo__desc">A transferência entre registradores tem prazos próprios das plataformas, que não dependem da Kairos. Acompanho diariamente e te aviso a cada avanço.</p>
+      </div>
+      <div class="prazo__card">
+        <p class="prazo__phase">Fase 2 — Restauração + DNS + SSL</p>
+        <p class="prazo__time">2 a 3 dias úteis</p>
+        <p class="prazo__desc">Assim que o domínio destravar, o site é restaurado, apontado e protegido.</p>
+      </div>
+      <div class="prazo__card">
+        <p class="prazo__phase">Fase 3 — Testes e entrega</p>
+        <p class="prazo__time">1 dia útil</p>
+        <p class="prazo__desc">Verificação completa e entrega do resumo de execução.</p>
+      </div>
+    </div>
+    <div class="alert-box">
+      <p class="alert-box__title">Em resumo</p>
+      <p class="alert-box__body">
+        Estimativa total: <strong>8 a 15 dias úteis</strong> a partir da aprovação. A maior parte desse tempo
+        é o prazo das próprias plataformas na transferência do domínio a parte que depende só do nosso
+        trabalho é rápida. Após a conclusão, o SEO e a unificação previstos em contrato seguem normalmente.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTIMENTO -->
+<section class="section">
+  <div class="wrap">
+    <p class="section__label">Investimento</p>
+    <h2 class="section__title">Valor e condições</h2>
+
+    <div class="payment-box">
+      <div>
+        <p class="payment-box__label">Valor único</p>
+        <p class="payment-box__title">Regularização completa da infraestrutura</p>
+        <p class="payment-box__desc">
+          Pagamento único, sem mensalidade e sem cobrança recorrente. Cobre toda a mão de obra
+          técnica das 5 etapas <strong style="color:rgba(247,244,239,.85);">e a taxa de transferência do
+          domínio</strong> sem nenhum custo adicional para você nesta etapa.
+        </p>
+      </div>
+      <div>
+        <p class="payment-box__price">R$&nbsp;500</p>
+        <p class="payment-box__note">pagamento único</p>
+      </div>
+    </div>
+
+    <ul class="item-list">
+      <li><strong>Forma de pagamento:</strong> PIX, transferência ou link de pagamento (até 2x sem juros).</li>
+      <li><strong>Validade deste orçamento:</strong> 10 dias a partir da data deste documento.</li>
+      <li><strong>Quando pagar:</strong>pagamento integral na aprovação do orçamento o valor já inclui a taxa de transferência do domínio, paga à plataforma logo no início do processo.</li>
+      <li><strong>Garantia:</strong> a etapa só é dada como concluída com os dois endereços funcionando e testados e você recebe o resumo de tudo que foi feito.</li>
+    </ul>
+
+    <div class="choice">
+      <strong>A decisão é 100% sua.</strong> Você pode aprovar este orçamento, ou preferir que outro profissional
+      da sua confiança execute esta etapa — o Relatório de Situação entregue junto permite que qualquer pessoa
+      continue exatamente do ponto em que está, sem retrabalho. Nos dois casos, o SEO e a unificação contratados
+      seguem garantidos comigo, sem custo, assim que o site estiver no ar.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer">
+      <span class="footer__brand">Kairos Solutions IT LTDA</span>
+      <span class="footer__copy">Orçamento — Regularização de Infraestrutura | Athos Psicologia · Junho 2026</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
